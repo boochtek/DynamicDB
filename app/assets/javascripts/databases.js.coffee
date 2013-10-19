@@ -47,6 +47,9 @@ show_table = (table_id) ->
   $.get "/tables/#{table_id}", (data, textStatus, jqXHR) ->
     console.log(data)
     $('.database .tables .table').append($(data))
+    $('.data-table').dataTable()
+
+
 
 $ ->
   $('#add-table').on 'click', (e) ->

@@ -17,33 +17,19 @@ div.database data-id=@database.id
         a#add-table = 'Add Table'
       - @database.tables.each do |table|
         li
-          a data-id=table.id
+          a data-id=table.id data-name=table.name
             = table.name
 
-    div.table data-id=@table.id
-      table
-        thead
-          tr
-            th = 'Column 1'
-            th = 'Column 2'
-            th = 'Column 3'
-            th = 'Column 4'
-        tbody
-          tr
-            td = 'Data'
-            td = 'Data'
-            td = 'Data'
-            td = 'Data'
-          tr
-            td = 'Data'
-            td = 'Data'
-            td = 'Data'
-            td = 'Data'
-          tr
-            td = 'Data'
-            td = 'Data'
-            td = 'Data'
-            td = 'Data'
+    div.table data-id=current_table.try(:id)
+      p
+        strong Name: 
+        span.editable
+          = @table.name
+      p
+        strong ID:
+        = @table.id
+
+        == render 'tables/table'
 
 
 = link_to 'Edit this Database', edit_database_path(@database)
