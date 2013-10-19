@@ -9,8 +9,7 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
 /*
- *= require jquery.ui.core
- *= require jquery.ui.theme
+ *= require jquery.ui.all
  *= require dataTables/src/demo_table_jui
  *= require_tree .
  *= require_self
@@ -88,4 +87,8 @@ span.editable {
 }
 span.editable:hover {
     border-bottom: 1px solid #00008b;
+}
+
+form.edit-column .actions {
+  display: none;
 }
