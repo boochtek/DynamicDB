@@ -6,7 +6,9 @@
 
 <div class="container">
   <div class="huge buttons">
-    <%= link_to('Create new blank DB', '', class: 'huge') %>
+    <% form_for 'database' do |f| %>
+      f.submit, 'Create new blank DB', html: { class: 'huge' }
+    <% end %>
     <%= link_to('Open existing DB', '', class: 'huge') %>
     <!-- <%= link_to('Create new DB from template', '', class: 'huge') %> -->
   </div>
