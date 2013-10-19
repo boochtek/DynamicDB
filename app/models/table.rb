@@ -4,6 +4,16 @@ class Table < ActiveRecord::Base
   has_many :columns
   has_many :records
 
+  def initialize(*args)
+    super
+    (1..5).each do |i|
+      columns.build(name: "Column #{i}")
+    end
+    (1..4).each do |i|
+      records.build
+    end
+  end
+
   def name
     read_attribute(:name) || 'New Table'
   end
