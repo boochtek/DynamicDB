@@ -18,5 +18,6 @@ enableEditables = ->
     # TODO: We should handle failures and timeouts in POSTing, and make our own "Saving..." indicator.
     $.post($tr.data('url'), data, null, 'json')
     value
+  , onblur: 'submit'
 
 window.enableEditables = enableEditables
