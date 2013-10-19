@@ -4,4 +4,3 @@
 require File.expand_path('../config/application', __FILE__)
 
 DynamicDB::Application.load_tasks
-require 'metric_fu'
