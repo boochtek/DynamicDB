@@ -74,3 +74,10 @@ footer {
 footer #copyright {
     font-size: 75%;
 }
+
+span.editable {
+    border-bottom: 1px dotted #808080;
+}
+span.editable:hover {
+    border-bottom: 1px solid #00008b;
+}
