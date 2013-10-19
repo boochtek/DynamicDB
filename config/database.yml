@@ -1,14 +1,22 @@
-# Database (SQLite) configuration file for development and testing w/ ActiveRecord or DataMapper/DataObjects.
-
-# NOTE: Our Capistrano deployment replaces this file with a configuration file pulled in from outside the repository.
-# NOTE: This defines the default DataMapper connection; other connections can be defined.
-
 development:
-  adapter: sqlite3
-  database: db/development.sqlite3
-test: &test
-  adapter: sqlite3
-  database: db/test.sqlite3
+  adapter: postgresql
+  host: localhost
+  database: <%= ENV['POSTGRES_DBNAME'] || "dynamicdb_development" %>
+  pool: 5
+  timeout: 5000
 
-cucumber:
-  <<: *test
+test:
+  adapter: postgresql
+  host: localhost
+  database: dynamicdb_test
+  pool: 5
+  timeout: 5000
+
+production:
+  adapter: postgresql
+  host: localhost
+  database: <%= ENV['POSTGRES_DBNAME'] %>
+  username: <%= ENV['POSTGRES_USERNAME'] %>
+  password: <%= ENV['POSTGRES_PASSWORD'] %>
+  pool: 5
+  timeout: 5000

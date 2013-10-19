@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.0'
 
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+gem 'pg'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -58,7 +58,7 @@ gem "shoulda", "~> 3.5", groups: ["test"]
 gem "shoulda-matchers", "~> 2.2", groups: ["test"]
 gem "sidekiq", "~> 2.12"
 gem "email_spec", "~> 1.4", groups: ["test"]
-gem "metric_fu", "~> 4.2.1", groups: ["developmenttest"]
+gem "metric_fu", "~> 4.2.1", groups: ["development", "test"]
 gem "slim-rails", "~> 2.0"
 gem "haml", "~> 4.0"
 gem "sass", "~> 3.2"
