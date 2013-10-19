@@ -32,7 +32,7 @@
 
     <!-- Make sure all CSS stylesheets come before all JavaScript. (http://code.google.com/speed/page-speed/docs/rtt.html#PutStylesBeforeScripts) -->
     <% # Combine all stylesheets into a single CSS file (possibly excepting IE-specific file(s)), preferably compressed. %>
-    <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => false %>
+    <%= stylesheet_link_tag "application", media: "all" %>
 
     <!-- Make ABBR elements work in all versions of IE. See http://xopus.com/devblog/2008/style-unknown-elements.html -->
     <script type="text/javascript">document.createElement('abbr');</script>
@@ -41,7 +41,7 @@
     <%= jquery_include_tag %>
 
     <!-- Include all other JavaScript files. If production, minimize and combine into a single file. -->
-    <%= javascript_include_tag "application", "data-turbolinks-track" => false %>
+    <%= javascript_include_tag "application" %>
     <%= javascript_include_tag 'boochtek/google-analytics' if GOOGLE_ANALYTICS_CODE %>
 
     <!-- Make sure we're not subject to CSRF attacks. -->

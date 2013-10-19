@@ -15,5 +15,4 @@
 //= require jquery.ui.all
 //= require jquery.editable
 //= require dataTables/jquery.dataTables
-//= require turbolinks
 //= require_tree .
