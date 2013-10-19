@@ -22,7 +22,7 @@ show_table = (table_id) ->
 
 bindEventHandlers = ->
   enableEditables()
-  $('.data-table').dataTable()
+  $('.data-table').dataTable(bPaginate: false, bSort: false)
   $('th.column-head').on 'dblclick', (e) ->
     e.preventDefault()
     openColumnEditForm $(this)
