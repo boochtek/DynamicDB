@@ -47,7 +47,7 @@ end
 gem "annotate", "~> 2.5", groups: [:development], require: false
 gem "bullet", "~> 4.6", groups: [:development, :test]
 gem "rspec", "~> 2.13", groups: ["development", "test"]
-gem "rspec-rails", "~> 2.13", groups: ["test"]
+gem "rspec-rails", "~> 2.13", groups: ["development", "test"]
 gem "bogus", "~> 0.1.0", groups: ["test"]
 gem "database_cleaner", "~> 1.0", groups: ["test"]
 gem "cucumber", "~> 1.3", groups: ["development", "test"]
