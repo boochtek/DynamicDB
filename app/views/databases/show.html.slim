@@ -1,13 +1,15 @@
 p#notice = notice
 
 p
-  strong Id:
+  strong Id: 
+  = @database.id
+
+p
+  strong Name: 
   = @database.name
 
 p
-  strong Name:
-  = @database.name
+  strong URL: 
+  = link_to database_url(@database)
 
-= link_to 'Edit', edit_database_path(@database)
-'|
-= link_to 'Back', databases_path
+= link_to 'Edit this Database', edit_database_path(@database)
