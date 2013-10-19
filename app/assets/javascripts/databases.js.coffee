@@ -3,4 +3,17 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $ ->
-  $('#example').dataTable();
+  $('#example').dataTable()
+  $('td').editable()
+  $('th').on 'dblclick', (e) ->
+    e.preventDefault()
+    $("#dialog-form").dialog "open"
+
+  $("#dialog-form").dialog
+    autoOpen: false
+    height: 300
+    width: 350
+    modal: true
+    buttons:
+      Cancel: ->
+        $(this).dialog "close"
