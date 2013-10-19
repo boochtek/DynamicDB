@@ -1,25 +1,9 @@
 $ ->
   $('span.editable').editable (value, settings) ->
     $span = $(this)
-    url = $span.data('url')
     data = {_method: 'PUT'}
     data[$span.data('attribute')] = value
-    $.post(url, data)
+    # TODO: We should handle failures and timeouts in POSTing, and make our own "Saving..." indicator.
+    $.post($span.data('url'), data)
     value
-  , tooltip: 'Click to edit', indicator: 'Saving...', submitdata: {}
-
-
-#$ ->
-#  $('body').on 'click', 'span.editable', ->
-#    $this = $(this)
-#    value = $this.text()
-#    console.log(value)
-#    $form = $("<form style='display: inline'><input type='text' value='#{value}' /></form>")
-#    $form.on 'submit', (e) ->
-#      e.preventDefault()
-#      $this = $(this)
-#      value = $this.find('input').val()
-#      console.log("value: #{value}")
-#      $this.replaceWith("<span class='editable'>#{value}</span>")
-#    $this.replaceWith($form)
-#    $form.trigger('active')
+  , tooltip: 'Click to edit'
