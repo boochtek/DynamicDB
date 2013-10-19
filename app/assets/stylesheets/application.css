@@ -20,6 +20,14 @@ body {
     background-color: #f1ffda;
 }
 
+header h1 {
+    padding-bottom: 10px;
+    border-bottom: 2px solid black;
+}
+header h1 a {
+    text-decoration: none;
+}
+
 div.huge.buttons {
     position: relative;
     width: 680px;
