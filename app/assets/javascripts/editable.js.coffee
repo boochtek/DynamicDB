@@ -1,4 +1,7 @@
 $ ->
+  enableEditables()
+
+enableEditables = ->
   $('span.editable').editable (value, settings) ->
     $span = $(this)
     data = {_method: 'PUT'}
@@ -7,3 +10,5 @@ $ ->
     $.post($span.data('url'), data)
     value
   , tooltip: 'Click to edit'
+
+window.enableEditables = enableEditables
