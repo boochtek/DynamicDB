@@ -1,15 +1,19 @@
 p#notice = notice
 
 p
-  strong Id: 
+  strong
+    'Id:
   = @database.id
 
 p
-  strong Name: 
-  = @database.name
+  strong
+    'Name:
+  span.editable data-base-url='databases' data-id=@database.id data-attribute='name'
+    = @database.name
 
 p
-  strong URL: 
+  strong
+    'URL:
   = link_to database_url(@database)
 
 = link_to 'Edit this Database', edit_database_path(@database)
