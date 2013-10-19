@@ -1,0 +1,12 @@
+p#notice = notice
+
+p
+  strong Name:
+  = @column.name
+p
+  strong Table:
+  = @column.table_id
+
+= link_to 'Edit', edit_column_path(@column)
+'|
+= link_to 'Back', columns_path

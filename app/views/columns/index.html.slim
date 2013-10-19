@@ -1,0 +1,21 @@
+h1 Listing columns
+
+table
+  tr
+    th Name
+    th Table
+    th
+    th
+    th
+
+  - @columns.each do |column|
+    tr
+      td = column.name
+      td = column.table_id
+      td = link_to 'Show', column
+      td = link_to 'Edit', edit_column_path(column)
+      td = link_to 'Destroy', column, :confirm => 'Are you sure?', :method => :delete
+
+br
+
+= link_to 'New Column', new_column_path
