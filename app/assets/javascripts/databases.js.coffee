@@ -7,9 +7,9 @@ $ ->
   $('td').editable()
   $('th').on 'dblclick', (e) ->
     e.preventDefault()
-    $("#dialog-form").dialog "open"
+    $(".edit_database").dialog "open"
 
-  $("#dialog-form").dialog
+  $(".edit_database").dialog
     autoOpen: false
     height: 300
     width: 350
