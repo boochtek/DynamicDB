@@ -1,6 +1,6 @@
 require 'json'
 
-class Table < ActiveRecord::Base
+class Record < ActiveRecord::Base
   belongs_to :table
 
   # attribute :serialized_data, String
