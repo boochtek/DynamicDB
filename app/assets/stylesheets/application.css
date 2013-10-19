@@ -13,7 +13,7 @@
  */
 
 body {
-    background-color: #e8ffd5;
+    background-color: #f1ffda;
 }
 
 div.huge.buttons {
@@ -35,7 +35,7 @@ div.huge.buttons a.huge {
     height: 20px;
     float: left;
     clear: both;
-    overflow: auto;
+    overflow: hidden;
     padding: 50px 70px;
     margin: 10px 0px;
     border: 1px solid #80ab5d;
