@@ -1,10 +1,9 @@
 $ ->
   $('span.editable').editable (value, settings) ->
     $span = $(this)
-    url = "/#{$span.data('base-url')}/#{$span.data('id')}"
-    attribute = $span.data('attribute')
-    data = {}
-    data[attribute] = value
+    url = $span.data('url')
+    data = {_method: 'PUT'}
+    data[$span.data('attribute')] = value
     $.post(url, data)
     value
   , tooltip: 'Click to edit', indicator: 'Saving...', submitdata: {}

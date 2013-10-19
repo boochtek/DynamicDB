@@ -8,7 +8,7 @@ p
 p
   strong
     'Name:
-  span.editable data-base-url='databases' data-id=@database.id data-attribute='name'
+  span.editable data-url="/databases/#{@database.id}" data-attribute='database[name]'
     = @database.name
 
 p
