@@ -66,3 +66,4 @@ gem "exception_notification", "~> 4.0.0rc1"
 gem "rails-footnotes", "~> 3.7", groups: [:development]
 gem "capistrano", "~> 2.15"
 gem "unicorn", "~> 4.6.0", groups: [:production]
+gem "pry"
