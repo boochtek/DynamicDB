@@ -1,19 +1,49 @@
-p#notice = notice
+div.database
+  div.details
+    p
+      strong
+        'Name:
+      span.editable data-url="/databases/#{@database.id}" data-attribute='database[name]'
+        = @database.name
+      '
+    p
+      strong
+        'Shareable Link:
+        = link_to database_url(@database), database_url(@database), title: 'Share this URL to share access to your DB'
 
-p
-  strong
-    'Id:
-  = @database.id
+  div.tables
+    ul.list
+      li
+        a = 'Table 1'
+      li
+        a = 'Table 2'
+      li
+        a = 'Table 3'
 
-p
-  strong
-    'Name:
-  span.editable data-url="/databases/#{@database.id}" data-attribute='database[name]'
-    = @database.name
+    div.table
+      table
+        thead
+          tr
+            th = 'Column 1'
+            th = 'Column 2'
+            th = 'Column 3'
+            th = 'Column 4'
+        tbody
+          tr
+            td = 'Data'
+            td = 'Data'
+            td = 'Data'
+            td = 'Data'
+          tr
+            td = 'Data'
+            td = 'Data'
+            td = 'Data'
+            td = 'Data'
+          tr
+            td = 'Data'
+            td = 'Data'
+            td = 'Data'
+            td = 'Data'
 
-p
-  strong
-    'URL:
-  = link_to database_url(@database)
 
 = link_to 'Edit this Database', edit_database_path(@database)

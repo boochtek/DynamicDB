@@ -1,3 +1,20 @@
-// Place all the styles related to the Databases controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.database .details {
+  border-bottom: solid black 2px;
+}
+
+.database .tables {
+  margin-top: 10px;
+}
+
+.database .tables ul {
+  float: left;
+  list-style-type: none;
+  padding: 5px;
+  margin: 10px;
+}
+
+.database .tables table, .database .tables table th, .database .tables table td {
+  border-collapse: collapse;
+  border: 1px solid black;
+  padding: 3px;
+}
