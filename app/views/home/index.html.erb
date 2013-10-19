@@ -1,13 +1,13 @@
-<h2>Welcome to <%= SITE_NAME %>!</h2>
+<h1><%= SITE_NAME %></h1>
 
 <p>
- This site is a new Ruby on Rails application.
- The site owner has yet to configure the home/index view.
+ With <%= SITE_NAME %>, you can easily create and manipulate database applications.
 </p>
 
-<%- if Rails.env == 'development' -%>
-<h3>Site Info</h3>
-<p>
-<%= render :inline => Rails::Info.to_html %>
-</p>
-<%- end -%>
+<div class="container">
+  <div class="huge buttons">
+    <%= link_to('Create new blank DB', '', class: 'huge') %>
+    <%= link_to('Open existing DB', '', class: 'huge') %>
+    <!-- <%= link_to('Create new DB from template', '', class: 'huge') %> -->
+  </div>
+</div>

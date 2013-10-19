@@ -11,3 +11,54 @@
  *= require_self
  *= require_tree .
  */
+
+body {
+    background-color: #e8ffd5;
+}
+
+div.huge.buttons {
+    position: relative;
+    width: 680px;
+    height: 380px;
+    margin: 0 auto;
+}
+
+/* Based on http://tympanus.net/codrops/2011/11/07/animated-buttons-with-css3/. */
+div.huge.buttons a.huge {
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    font-size: 120%;
+    color: #001111;
+    position: relative;
+    width: 200px;
+    height: 20px;
+    float: left;
+    clear: both;
+    overflow: auto;
+    padding: 50px 70px;
+    margin: 10px 0px;
+    border: 1px solid #80ab5d;
+    background: #a9db80;
+    background: -webkit-gradient(linear,left top,left bottom,color-stop(#a9db80,0),color-stop(#96c56f,1));
+    background: -webkit-linear-gradient(top, #a9db80 0%, #96c56f 100%);
+    background: -moz-linear-gradient(top, #a9db80 0%, #96c56f 100%);
+    background: -o-linear-gradient(top, #a9db80 0%, #96c56f 100%);
+    background: linear-gradient(top, #a9db80 0%, #96c56f 100%);
+    -webkit-box-shadow: 0px 1px 1px rgba(255,255,255,0.8) inset, 1px 1px 3px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0px 1px 1px rgba(255,255,255,0.8) inset, 1px 1px 3px rgba(0,0,0,0.2);
+    box-shadow: 0px 1px 1px rgba(255,255,255,0.8) inset, 1px 1px 3px rgba(0,0,0,0.2);
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+
+footer {
+    margin-top: 20px;
+    border-top: 1px solid black;
+    padding-top: 10px;
+}
+
+footer #copyright {
+    font-size: 75%;
+}
