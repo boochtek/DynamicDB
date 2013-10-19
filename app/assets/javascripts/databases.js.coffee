@@ -4,15 +4,17 @@
 
 $ ->
   $('.data-table').dataTable()
-  $('td').editable()
+
   $('th').on 'dblclick', (e) ->
     e.preventDefault()
-    $col = $(this)
-    console.log $col
+    $column = $(this)
 
-    $("#column_type option[value='#{$col.data('type')}']").attr("selected", "selected")
-    $("#column_name").val $col.data('name')
-    $(".edit-column").attr("action", "/columns/#{$col.data('id')}")
+    # Initialize form with value for column
+    $("#column_type option[value='#{$column.data('type')}']").attr("selected", "selected")
+    $("#column_name").val $column.data('name')
+    $(".edit-column").attr("action", "/columns/#{$column.data('id')}")
+
+    # Open Modal Form Dialog
     $(".edit-column").dialog "open"
 
   $(".edit-column").dialog
