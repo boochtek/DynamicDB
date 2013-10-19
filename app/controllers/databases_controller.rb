@@ -10,6 +10,7 @@ class DatabasesController < ApplicationController
   # GET /databases/1
   # GET /databases/1.json
   def show
+    @table = @database.tables.first
   end
 
   # GET /databases/new

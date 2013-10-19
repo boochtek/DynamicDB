@@ -1,11 +1,8 @@
-p#notice = notice
-
 p
   strong Name: 
   = @table.name
+p
+  strong ID:
+  = @table.id
 
 == render 'table'
-
-= link_to 'Edit', edit_table_path(@table)
-'|
-= link_to 'Back', tables_path

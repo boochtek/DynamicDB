@@ -10,6 +10,7 @@ class TablesController < ApplicationController
   # GET /tables/1
   # GET /tables/1.json
   def show
+    render layout: false # Only called by JS.
   end
 
   # GET /tables/new

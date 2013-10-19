@@ -1,4 +1,4 @@
-div.database
+div.database data-id=@database.id
   div.details
     p
       strong
@@ -14,13 +14,13 @@ div.database
   div.tables
     ul.list
       li
-        a = 'Table 1'
-      li
-        a = 'Table 2'
-      li
-        a = 'Table 3'
+        a#add-table = 'Add Table'
+      - @database.tables.each do |table|
+        li
+          a data-id=table.id
+            = table.name
 
-    div.table
+    div.table data-id=@table.id
       table
         thead
           tr
