@@ -1,15 +1,8 @@
-= form_for @column do |f|
-  - if @column.errors.any?
-    #error_explanation
-      h2 = "#{pluralize(@column.errors.count, "error")} prohibited this column from being saved:"
-      ul
-        - @column.errors.full_messages.each do |message|
-          li = message
-
+= form_for 'column', url: column_path, html: { class: 'edit-column' } do |f|
   .field
     = f.label :name
     = f.text_field :name
   .field
-    = f.label :table_id
-    = f.number_field :table_id
+    = f.label :type
+    = f.select :type, options: [ "String", "Integer", "Decimal", "Date", "Boolean" ]
   .actions = f.submit 'Save'

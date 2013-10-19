@@ -3,13 +3,19 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $ ->
-  $('#example').dataTable()
+  $('.data-table').dataTable()
   $('td').editable()
   $('th').on 'dblclick', (e) ->
     e.preventDefault()
-    $(".edit_database").dialog "open"
+    $col = $(this)
+    console.log $col
 
-  $(".edit_database").dialog
+    $("#column_type option[value='#{$col.data('type')}']").attr("selected", "selected")
+    $("#column_name").val $col.data('name')
+    $(".edit-column").attr("action", "/columns/#{$col.data('id')}")
+    $(".edit-column").dialog "open"
+
+  $(".edit-column").dialog
     autoOpen: false
     height: 300
     width: 350
