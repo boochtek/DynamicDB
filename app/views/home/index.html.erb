@@ -9,7 +9,7 @@
     <%= form_for 'database', url: databases_path do |f| %>
       <%= f.submit 'Create new blank DB', class: 'huge' %>
     <% end %>
-    <%= form_for 'database' do |f| %>
+    <%= form_for 'database', url: databases_path, method: 'get' do |f| %>
       <%= f.submit 'Open existing DB', class: 'huge' %>
     <% end %>
     <!--
