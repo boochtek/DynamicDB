@@ -6,7 +6,7 @@
 
 <div class="container">
   <div class="huge buttons">
-    <%= form_for 'database' do |f| %>
+    <%= form_for 'database', url: databases_path do |f| %>
       <%= f.submit 'Create new blank DB', class: 'huge' %>
     <% end %>
     <%= form_for 'database' do |f| %>
