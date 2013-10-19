@@ -15,7 +15,9 @@ test:
 production:
   adapter: postgresql
   host: localhost
-  database: <%= ENV['POSTGRES_DBNAME'] %>
+  database: <%= dbname = ENV['POSTGRES_DBNAME']; puts "DBNAME = #{dbname.inspect}"; dbname %>
+  username: <%= username = ENV['POSTGRES_USERNAME']; puts "USERNAME = #{username.inspect}"; username %>
+  password: <%= password = ENV['POSTGRES_PASSWORD']; puts "PASSWORD = #{password.inspect}"; password %>
   username: <%= ENV['POSTGRES_USERNAME'] %>
   password: <%= ENV['POSTGRES_PASSWORD'] %>
   pool: 5
