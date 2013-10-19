@@ -24,7 +24,7 @@ class DatabasesController < ApplicationController
   # POST /databases
   # POST /databases.json
   def create
-    @database = Database.new(database_params)
+    @database = Database.new
 
     respond_to do |format|
       if @database.save
