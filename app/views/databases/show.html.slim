@@ -21,15 +21,8 @@ div.database data-id=@database.id
             = table.name
 
     div.table data-id=current_table.try(:id)
-      p
-        strong Name: 
-        span.editable
-          = @table.name
-      p
-        strong ID:
-        = @table.id
-
-      == render 'tables/table'
+      == render 'tables/table_info', table: @table
+      == render 'tables/table', table: @table
 
 == render 'columns/form'
 = link_to 'Edit this Database', edit_database_path(@database)

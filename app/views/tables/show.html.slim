@@ -1,9 +1,2 @@
-p
-  strong Name: 
-  span.editable
-  = @table.name
-p
-  strong ID:
-  = @table.id
-
-== render 'table'
+== render 'table_info', table: @table
+== render 'table', table: @table
