@@ -11,10 +11,19 @@ openColumnEditForm = ($column) ->
     # Open Modal Form Dialog
     $(".edit-column").dialog "open"
 
+show_table = (table_id) ->
+  console.log(table_id)
+  $('.database .tables .table').empty()
+  # TODO: We should test for failure or timeout here, and show a loading indicator.
+  $.get "/tables/#{table_id}", (data, textStatus, jqXHR) ->
+    console.log(data)
+    $('.database .tables .table').append($(data))
+    bindEventHandlers()
+
 bindEventHandlers = ->
   enableEditables()
   $('.data-table').dataTable()
-  $('th').on 'dblclick', (e) ->
+  $('th.column-head').on 'dblclick', (e) ->
     e.preventDefault()
     openColumnEditForm $(this)
 
@@ -53,12 +62,3 @@ $ ->
             $('form').submit()
         }
       ]
-
-show_table = (table_id) ->
-  console.log(table_id)
-  $('.database .tables .table').empty()
-  # TODO: We should test for failure or timeout here, and show a loading indicator.
-  $.get "/tables/#{table_id}", (data, textStatus, jqXHR) ->
-    console.log(data)
-    $('.database .tables .table').append($(data))
-    bindEventHandlers()
