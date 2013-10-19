@@ -19,6 +19,11 @@
   padding: 3px;
 }
 
+.database .tables table td {
+  height: 1em;
+  min-width: 5em;
+}
+
 .dataTables_wrapper {
   display: inline-block;
 }
