@@ -2,10 +2,25 @@
  With <%= SITE_NAME %>, you can easily create and manipulate database applications.
 </p>
 
+<p>
+  To get started, open an existing database (DB), or create a new blank DB.
+  This will take you to the table view.
+  From here, you can rename the DB, rename the table, add a table, or start editing in the table.
+</p>
+
+<p>
+  In the table, you can click on a row to edit it.
+  Or you can double-click on a column header to change its name and data type.
+</p>
+
+
 <div class="container">
   <div class="huge buttons">
+    <%= form_for 'database', url: database_path(33), method: 'get' do |f| %>
+      <%= f.submit 'Open Sample DB', class: 'huge' %>
+    <% end %>
     <%= form_for 'database', url: databases_path do |f| %>
-      <%= f.submit 'Create new blank DB', class: 'huge' %>
+        <%= f.submit 'Create new blank DB', class: 'huge' %>
     <% end %>
     <%= form_for 'database', url: databases_path, method: 'get' do |f| %>
       <%= f.submit 'Open existing DB', class: 'huge' %>
