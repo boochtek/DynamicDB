@@ -23,9 +23,8 @@ columnEditSubmitHandler = (e) ->
     url: form.attr('action'),
     type: 'PUT'
     data:
-      column:
-        data_type: data_type
-        name: name
+      data_type: data_type
+      name: name
     success: ->
       updateColumnHeader(form.data('id'), name, data_type)
       $(".edit-column").dialog "close"
@@ -44,13 +43,19 @@ show_table = (table_id) ->
     $('.database .tables .table').append($(data))
     bindEventHandlers()
 
-bindEventHandlers = ->
-  enableEditables()
+enableDataTables = ->
   # See http://datatables.net/examples/basic_init/dom.html for explanation of sDom (we just want the table itself).
   $('.data-table').dataTable(bPaginate: false, bSort: false, sDom: 'rt')
-  $('th.column-head').on 'dblclick', (e) ->
+
+enableColumnHeaders = ->
+  $('.database .tables .table thead th').on 'dblclick', (e) ->
     e.preventDefault()
     openColumnEditForm $(this)
+
+bindEventHandlers = ->
+  enableEditables()
+  enableDataTables()
+  enableColumnHeaders()
 
 $ ->
   bindEventHandlers()
@@ -95,6 +100,14 @@ $ ->
       add_new_record_to_table(data['id'])
     , 'json'
 
+  $('form.add-column').on 'click', (e) ->
+    e.preventDefault()
+    num_columns = $('table.data-table thead tr th').length
+    new_column_name = "Column #{num_columns + 1}"
+    $.post '/columns', {name: new_column_name, table_id: $('.database .tables .table').data('id')}, (data, textStatus, jqXHR) ->
+      add_new_column_to_table(new_column_name, data['id'])
+    , 'json'
+
 
 add_new_record_to_table = (new_record_id) ->
   num_columns = $('table.data-table thead tr th').length
@@ -104,4 +117,13 @@ add_new_record_to_table = (new_record_id) ->
   $new_row.data(id: new_record_id, url: "/records/#{new_record_id}")
   $new_row.append('<td></td>') for i in [1..num_columns]
   $new_row.appendTo('table.data-table tbody')
+  enableEditables()
+
+add_new_column_to_table = (new_column_name, new_column_id) ->
+  num_columns = $('table.data-table thead tr th').length
+  $new_th = $("<th>#{new_column_name}</th>")
+  $new_th.data(id: new_column_id, index: num_columns, name: new_column_name, type: 'String')
+  $('table.data-table thead tr').append($new_th);
+  $('table.data-table tbody tr').append('<td></td>');
+  enableColumnHeaders()
   enableEditables()
