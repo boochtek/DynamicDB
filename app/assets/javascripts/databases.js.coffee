@@ -46,7 +46,8 @@ show_table = (table_id) ->
 
 bindEventHandlers = ->
   enableEditables()
-  $('.data-table').dataTable(bPaginate: false, bSort: false)
+  # See http://datatables.net/examples/basic_init/dom.html for explanation of sDom (we just want the table itself).
+  $('.data-table').dataTable(bPaginate: false, bSort: false, sDom: 'rt')
   $('th.column-head').on 'dblclick', (e) ->
     e.preventDefault()
     openColumnEditForm $(this)
