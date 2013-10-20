@@ -1,19 +1,5 @@
-h1 Listing databases
+h1 Available Databases
 
-table
-  tr
-    th Name
-    th
-    th
-    th
-
+ul.database-list
   - @databases.each do |database|
-    tr
-      td = database.name
-      td = link_to 'Show', database
-      td = link_to 'Edit', edit_database_path(database)
-      td = link_to 'Destroy', database, :confirm => 'Are you sure?', :method => :delete
-
-br
-
-= link_to 'New Database', new_database_path
+    li = link_to database.name, database_path(database)

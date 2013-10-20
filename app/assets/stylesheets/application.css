@@ -93,3 +93,12 @@ span.editable:hover {
 .hidden {
   display: none;
 }
+
+ul.database-list li {
+  font-size: 125%;
+  padding: 2px 2px;
+}
+
+.table .operations form {
+  display: inline-block
+}
