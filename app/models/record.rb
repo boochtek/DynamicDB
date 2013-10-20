@@ -13,8 +13,12 @@ class Record < ActiveRecord::Base
   end
 
   def update(options)
-    new_data = data.dup
-    new_data[Integer(options[:index])] = options[:value]
+    if options.has_key?(:all_values)
+      new_data = options[:all_values]
+    elsif options.has_key?(:index) && options.has_key?(:value)
+      new_data = data.dup
+      new_data[Integer(options[:index])] = options[:value]
+    end
     update_attribute(:serialized_data, JSON.unparse(new_data))
   end
 end
