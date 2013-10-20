@@ -4,6 +4,9 @@ class Table < ActiveRecord::Base
   has_many :columns
   has_many :records
 
+  # attribute :name, String
+  # timestamps
+
   default_scope order('created_at')
 
   def initialize(*args)

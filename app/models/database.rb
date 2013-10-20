@@ -1,6 +1,9 @@
 class Database < ActiveRecord::Base
   has_many :tables
 
+  # attribute :name, String
+  # timestamps
+
   def initialize()
     super
     tables << Table.new(database_id: id)

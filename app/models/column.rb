@@ -1,6 +1,10 @@
 class Column < ActiveRecord::Base
   belongs_to :table
 
+  # attribute :name, String
+  # attribute :data_type, String
+  # timestamps
+
   default_scope order('created_at')
 
   def type

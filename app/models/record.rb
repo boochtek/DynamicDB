@@ -4,6 +4,7 @@ class Record < ActiveRecord::Base
   belongs_to :table
 
   # attribute :serialized_data, String
+  # timestamps
 
   default_scope order('created_at')
 
