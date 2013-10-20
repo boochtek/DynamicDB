@@ -171,12 +171,14 @@ $ ->
   enableTableOps()
 
 enableTableOps = () ->
+  $('form.add-record').off 'submit'
   $('form.add-record').on 'submit', (e) ->
     e.preventDefault()
     $.post '/records', {table_id: $('.database .tables .table').data('id')}, (data, textStatus, jqXHR) ->
       add_new_record_to_table(data['id'])
     , 'json'
 
+  $('form.add-column').off 'submit'
   $('form.add-column').on 'submit', (e) ->
     e.preventDefault()
     num_columns = $('table.data-table thead tr th:not(.actions)').length
