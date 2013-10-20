@@ -1,8 +1,10 @@
+-# COLUMN_TYPES = [ "String", "Integer", "Decimal", "Date", "Boolean" ]
+- COLUMN_TYPES = [ "String", "Integer", "Decimal", "Boolean" ]
 = form_for 'column', url: column_path, method: 'put', html: { class: 'edit-column' } do |f|
   .field
     = f.label :name
     = f.text_field :name
   .field
     = f.label :type
-    = f.select :type, options: [ "String", "Integer", "Decimal", "Date", "Boolean" ]
+    = f.select :type, options: COLUMN_TYPES
   .actions = f.submit 'Save'
