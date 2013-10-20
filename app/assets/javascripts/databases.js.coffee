@@ -47,6 +47,7 @@ show_table = (table_id) ->
   $.get "/tables/#{table_id}", (data, textStatus, jqXHR) ->
     $('.database .tables .table').append($(data))
     bindEventHandlers()
+    enableTableOps()
 
 columnsReordered = ->
   console.log('Columns reordered') # TODO: Send updates to server, so column order is persisted.
@@ -123,6 +124,7 @@ bindEventHandlers = ->
   enableEditables()
   enableDataTables()
   enableColumnHeaders()
+  enableTableOps()
 
 $ ->
   bindEventHandlers()
@@ -166,13 +168,16 @@ $ ->
   $(".edit-column #column_linked_table").on 'change', (e) ->
     toggleLinkColumnFields $(e.target).val()
 
-  $('form.add-record').on 'click', (e) ->
+  enableTableOps()
+
+enableTableOps = () ->
+  $('form.add-record').on 'submit', (e) ->
     e.preventDefault()
     $.post '/records', {table_id: $('.database .tables .table').data('id')}, (data, textStatus, jqXHR) ->
       add_new_record_to_table(data['id'])
     , 'json'
 
-  $('form.add-column').on 'click', (e) ->
+  $('form.add-column').on 'submit', (e) ->
     e.preventDefault()
     num_columns = $('table.data-table thead tr th:not(.actions)').length
     new_column_name = "Column #{num_columns + 1}"
