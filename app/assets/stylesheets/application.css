@@ -90,6 +90,12 @@ span.editable:hover {
     border-bottom: 1px solid #00008b;
 }
 
+form.editable {
+    display: inline-block;
+}
+form.editable input {
+}
+
 .hidden {
   display: none;
 }

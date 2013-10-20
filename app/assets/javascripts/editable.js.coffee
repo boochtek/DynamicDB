@@ -11,7 +11,7 @@ enableEditables = ->
     # TODO: We should handle failures and timeouts in POSTing, and make our own "Saving..." indicator.
     $.post($span.data('url'), data)
     value
-  , tooltip: 'Click to edit', placeholder: ''
+  , tooltip: 'Click to edit', placeholder: '', cssclass: 'inherit'
 
 cellEditorHandler = (value, settings) ->
   $td = $(this)
