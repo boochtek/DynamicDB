@@ -141,5 +141,6 @@ input[type="submit"].DTTT_button {
 }
 
 .tables .list li #add-table {
+  margin-top: -15px;
   margin-bottom: 20px;
 }
