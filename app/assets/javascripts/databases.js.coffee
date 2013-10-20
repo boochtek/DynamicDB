@@ -59,9 +59,12 @@ enableDataTables = ->
   #   r = processing indicator
   #   t = the table itself
   #   T = TableTools plugin
+  #   S = Scroller plugin (must come after t)
   $('.data-table').dataTable
     bPaginate: false,                                     # No pagination.
     bSort: false,                                         # Disable clicking on columns to sort.
+    bDeferRender: false,                                  # Set to true to be lazy about rendering off-screen rows/columns/
+    sScrollY: '',                                         # Scroll amount (or disable scrolling if '').
     sDom: 'T<"clear">Rrt',                                # See above.
     oColReorder: {                                        # Options for ColReorder plugin.
       fnReorderCallback: columnsReordered                 # Call this (with no arguments) when columns are reordered.
