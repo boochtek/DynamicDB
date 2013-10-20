@@ -32,6 +32,6 @@ class RecordsController < ApplicationController
   private
 
   def record_params
-    params.permit(:table_id, :index, :value)
+    params.permit(:table_id, :index, :value, :id, :all_values => [])
   end
 end
