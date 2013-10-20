@@ -205,12 +205,13 @@ toggleLinkColumnFields = (table_id) ->
   $(".field[data-table-id='#{table_id}'] select").attr('disabled', false)
 
 add_new_record_to_table = (new_record_id) ->
-  num_columns = $('table.data-table thead tr th').length
+  num_columns = $('table.data-table thead tr th:not(.actions)').length
   num_rows = $('table.data-table tbody tr').length
   $new_row = $('<tr></tr>')
   $new_row.addClass(if (num_rows % 2 == 1) then 'even' else 'odd') # FIXME: We should stop using odd/even classes in favor of CSS nth-child.
   $new_row.data(id: new_record_id, url: "/records/#{new_record_id}")
   $new_row.append('<td></td>') for i in [1..num_columns]
+  $new_row.append('<th class="actions"></th>')
   $new_row.appendTo('table.data-table tbody')
   enableEditables()
 
