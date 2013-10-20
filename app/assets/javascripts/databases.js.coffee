@@ -18,6 +18,7 @@ columnEditSubmitHandler = (e) ->
   form = $(e.target)
   data_type = $('#column_type').val()
   name = $('#column_name').val()
+  # TODO: deal with errors/validations. Waiting indicator
   $.ajax
     url: form.attr('action'),
     type: 'PUT'

@@ -1,8 +1,8 @@
 table.editable.data-table id=table.id
   thead
     tr
-      - table.columns.each do |c|
-        th.column-head data-id=c.id data-name=c.name data-type=c.type =c.name
+      - table.columns.each_with_index do |c, index|
+        th.column-head data-id=c.id data-name=c.name data-index=index data-type=c.type =c.name
   tbody
     - table.records.each do |record|
       tr data-id=record.id data-url=record_path(record)
