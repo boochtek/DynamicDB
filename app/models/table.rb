@@ -4,6 +4,8 @@ class Table < ActiveRecord::Base
   has_many :columns
   has_many :records
 
+  default_scope order('created_at')
+
   def initialize(*args)
     super
     (1..5).each do |i|

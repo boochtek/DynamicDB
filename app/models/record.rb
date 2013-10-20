@@ -5,6 +5,8 @@ class Record < ActiveRecord::Base
 
   # attribute :serialized_data, String
 
+  default_scope order('created_at')
+
   def data
     JSON.parse(read_attribute(:serialized_data)) rescue []
   end
