@@ -49,10 +49,41 @@ show_table = (table_id) ->
     bindEventHandlers()
 
 columnsReordered = ->
-  console.log('Columns reordered')
+  console.log('Columns reordered') # TODO: Send updates to server, so column order is persisted.
 
 rowSelected = (row) ->
-  console.log('Row selected')
+  $row = $(row)
+  # TODO: We should make each input appropraite for the column it's in.
+  return if $row.has(':input[type=submit][value=Save]').length == 1 # The row is already in save mode.
+  $row.find('td').each (index) ->
+    $td = $(this)
+    text = $td.text()
+    $td.replaceWith("<td><input type='text' value='#{text}' /></td>")
+  $actions_th = $row.find('th.actions')
+  $actions_th.append('<input type="submit" value="Save" />')
+  $actions_th.find('input[value=Save]').on 'click', () ->
+    saveRow(row)
+  $row.find('td:first :input').focus()
+
+saveRow = (row) ->
+  console.log('Saving row:')
+  $row = $(row)
+  values = $row.find(':input:not(:input[type=submit][value=Save])').map(() -> $(this).val()).get()
+  console.log values
+  saveRecord($row.data('url'), $row.data('id'), values)
+  # TODO: We should do validations first.
+  # TODO: We shouldn't do this until the save has succeded.
+  $row.find('td').each (index) ->
+    $td = $(this)
+    text = $td.find(':input').val()
+    $td.replaceWith("<td>#{text}</td>")
+  $row.find('th.actions input[value=Save]').remove()
+  $row.removeClass('selected')
+
+saveRecord = (url, record_id, values) ->
+  data = {_method: 'PUT', all_values: values}
+  # TODO: We should handle failures and timeouts in POSTing, and make our own "Saving..." indicator.
+  $.post(url, data, null, 'json')
 
 rowDeselected = (row) ->
   console.log('Row deselected')
