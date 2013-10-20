@@ -35,11 +35,9 @@ updateColumnHeader = (id, name, data_type) ->
   $th.data(type: data_type, name: name)
 
 show_table = (table_id) ->
-  console.log(table_id)
   $('.database .tables .table').empty()
   # TODO: We should test for failure or timeout here, and show a loading indicator.
   $.get "/tables/#{table_id}", (data, textStatus, jqXHR) ->
-    console.log(data)
     $('.database .tables .table').append($(data))
     bindEventHandlers()
 
