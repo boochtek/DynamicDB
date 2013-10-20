@@ -46,11 +46,34 @@ show_table = (table_id) ->
 columnsReordered = ->
   console.log('Columns reordered')
 
+rowSelected = (row) ->
+  console.log('Row selected')
+
+rowDeselected = (row) ->
+  console.log('Row deselected')
+
 enableDataTables = ->
   # See http://datatables.net/examples/basic_init/dom.html for explanation of sDom (we just want the table itself).
-  # For sDom: R = reorderable colums (ColReorder plugin); r = processing indicator; t = the table itself.
-  $('.data-table').dataTable bPaginate: false, bSort: false, sDom: 'Rrt',
-    oColReorder: {fnReorderCallback: columnsReordered}
+  # For sDom:
+  #   R = reorderable columns (ColReorder plugin)
+  #   r = processing indicator
+  #   t = the table itself
+  #   T = TableTools plugin
+  $('.data-table').dataTable
+    bPaginate: false,                                     # No pagination.
+    bSort: false,                                         # Disable clicking on columns to sort.
+    sDom: 'T<"clear">Rrt',                                # See above.
+    oColReorder: {                                        # Options for ColReorder plugin.
+      fnReorderCallback: columnsReordered                 # Call this (with no arguments) when columns are reordered.
+    },
+    oTableTools: {                                        # Options for TableTools plugin.
+      aButtons: ['copy', 'csv', 'xls', 'pdf', 'print'],   # Include these buttons (we're showing all buttons).
+      sRowSelect: 'multi',                                # Allow selecting multiple rows.
+      sSelectedClass: 'selected',                         # Add 'selected' class to selected rows.
+      sSwfPath: '/assets/dataTables/extras/swf/copy_csv_xls_pdf.swf', # Path to SWF file used by copy and local file operations.
+      fnRowSelected: rowSelected,                         # Call this (with array of TR nodes) when a row is selected.
+      fnRowDeselected: rowDeselected,                     # Call this (with array of TR nodes) when a row is deselected.
+    }
 
 enableColumnHeaders = ->
   $('.database .tables .table thead th').on 'dblclick', (e) ->
@@ -103,9 +126,6 @@ $ ->
 
   $(".edit-column #column_linked_table").on 'change', (e) ->
     toggleLinkColumnFields $(e.target).val()
-
-  $('.database .tables .table').append($(data))
-  bindEventHandlers()
 
   $('form.add-record').on 'click', (e) ->
     e.preventDefault()

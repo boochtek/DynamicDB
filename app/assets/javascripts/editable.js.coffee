@@ -13,8 +13,6 @@ enableEditables = ->
     value
   , tooltip: 'Click to edit', placeholder: ''
 
-  $('table.editable td').editable cellEditorHandler, onblur: 'submit', placeholder: ''
-
 cellEditorHandler = (value, settings) ->
   $td = $(this)
   $tr = $td.parent('tr')

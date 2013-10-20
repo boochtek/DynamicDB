@@ -15,5 +15,7 @@
 //= require jquery.ui.all
 //= require jquery.editable
 //= require dataTables/jquery.dataTables
+//= require ZeroClipboard
+//= require TableTools
 //= require ColReorderWithResize
 //= require_tree .
