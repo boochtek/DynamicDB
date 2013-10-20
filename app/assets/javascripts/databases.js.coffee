@@ -174,7 +174,7 @@ $ ->
 
   $('form.add-column').on 'click', (e) ->
     e.preventDefault()
-    num_columns = $('table.data-table thead tr th').length
+    num_columns = $('table.data-table thead tr th:not(.actions)').length
     new_column_name = "Column #{num_columns + 1}"
     $.post '/columns', {name: new_column_name, table_id: $('.database .tables .table').data('id')}, (data, textStatus, jqXHR) ->
       add_new_column_to_table(new_column_name, data['id'])
@@ -208,10 +208,10 @@ add_new_record_to_table = (new_record_id) ->
   enableEditables()
 
 add_new_column_to_table = (new_column_name, new_column_id) ->
-  num_columns = $('table.data-table thead tr th').length
+  num_columns = $('table.data-table thead tr th:not(.actions)').length
   $new_th = $("<th>#{new_column_name}</th>")
   $new_th.data(id: new_column_id, index: num_columns, name: new_column_name, type: 'String')
-  $('table.data-table thead tr').append($new_th);
-  $('table.data-table tbody tr').append('<td></td>');
+  $('table.data-table thead tr th.actions').before($new_th);
+  $('table.data-table tbody tr th.actions').before('<td></td>');
   enableColumnHeaders()
   enableEditables()
