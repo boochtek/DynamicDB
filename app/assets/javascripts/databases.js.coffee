@@ -3,13 +3,36 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 openColumnEditForm = ($column) ->
-    # Initialize form with values for column
-    $("#column_type option[value='#{$column.data('type')}']").attr("selected", "selected")
-    $("#column_name").val $column.data('name')
-    $(".edit-column").attr("action", "/columns/#{$column.data('id')}")
+  # Initialize form with values for column
+  $form = $(".edit-column")
+  $form.find("#column_type option[value='#{$column.data('type')}']").attr("selected", "selected")
+  $form.find("#column_name").val($column.data('name'))
+  $form.data(id: $column.data('id'))
+  $form.attr(action: "/columns/#{$column.data('id')}", method: "put")
 
-    # Open Modal Form Dialog
-    $(".edit-column").dialog "open"
+  # Open Modal Form Dialog
+  $(".edit-column").dialog "open"
+
+columnEditSubmitHandler = (e) ->
+  e.preventDefault()
+  form = $(e.target)
+  data_type = $('#column_type').val()
+  name = $('#column_name').val()
+  $.ajax
+    url: form.attr('action'),
+    type: 'PUT'
+    data:
+      column:
+        data_type: data_type
+        name: name
+    success: ->
+      updateColumnHeader(form.data('id'), name, data_type)
+      $(".edit-column").dialog "close"
+
+updateColumnHeader = (id, name, data_type) ->
+  $th = $("th[data-id='#{id}']")
+  $th.text(name)
+  $th.data(type: data_type, name: name)
 
 show_table = (table_id) ->
   console.log(table_id)
@@ -29,6 +52,7 @@ bindEventHandlers = ->
 
 $ ->
   bindEventHandlers()
+  $('form.edit-column').on 'submit', columnEditSubmitHandler
   $('#add-table').on 'click', (e) ->
     # TODO: We should test for failure or timeout here, and show a loading indicator.
     $.post '/tables', {table: {database_id: $('.database').data('id')}}, (data, textStatus, jqXHR) ->

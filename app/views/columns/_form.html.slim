@@ -1,4 +1,4 @@
-= form_for 'column', url: column_path, html: { class: 'edit-column' } do |f|
+= form_for 'column', url: column_path, method: 'put', html: { class: 'edit-column' } do |f|
   .field
     = f.label :name
     = f.text_field :name
