@@ -1,6 +1,6 @@
 p
   strong Name: 
-  span.editable data-url="/tables/#{table.id}" data-attribute='table[name]'
+  span.editable data-url="/tables/#{table.id}" data-attribute='table[name]' data-also-update-selector="a[data-id=#{table.id}]"
     = table.name
 p
   strong ID:
