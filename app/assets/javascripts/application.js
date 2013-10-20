@@ -15,4 +15,5 @@
 //= require jquery.ui.all
 //= require jquery.editable
 //= require dataTables/jquery.dataTables
+//= require ColReorderWithResize
 //= require_tree .

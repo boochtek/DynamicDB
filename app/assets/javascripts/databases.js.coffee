@@ -43,9 +43,14 @@ show_table = (table_id) ->
     $('.database .tables .table').append($(data))
     bindEventHandlers()
 
+columnsReordered = ->
+  console.log('Columns reordered')
+
 enableDataTables = ->
   # See http://datatables.net/examples/basic_init/dom.html for explanation of sDom (we just want the table itself).
-  $('.data-table').dataTable(bPaginate: false, bSort: false, sDom: 'rt')
+  # For sDom: R = reorderable colums (ColReorder plugin); r = processing indicator; t = the table itself.
+  $('.data-table').dataTable bPaginate: false, bSort: false, sDom: 'Rrt',
+    oColReorder: {fnReorderCallback: columnsReordered}
 
 enableColumnHeaders = ->
   $('.database .tables .table thead th').on 'dblclick', (e) ->
