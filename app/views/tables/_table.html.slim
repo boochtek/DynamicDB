@@ -4,9 +4,13 @@ table.editable.data-table id=table.id
       - table.columns.each_with_index do |column, index|
         th data-id=column.id data-name=column.name data-index=index data-type=column.type data-link-id=column.linked_column_id
           = column.name
+      th.actions
+        |Actions
   tbody
     - table.records.each do |record|
       tr data-id=record.id data-url=record_path(record)
         - table.columns.each_with_index do |c, n|
           td
             = record.data[n] || ''
+        th.actions
+          '
