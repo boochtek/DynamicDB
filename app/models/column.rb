@@ -8,7 +8,7 @@ class Column < ActiveRecord::Base
   default_scope order('created_at')
 
   # TYPES = [ "String", "Integer", "Decimal", "Date", "Boolean" ]
-  TYPES = [ "String", "Integer", "Decimal", "Boolean" ]
+  TYPES = [ "String", "Integer", "Decimal", "Boolean", "Link" ]
 
   def type
     read_attribute(:data_type) || "String"

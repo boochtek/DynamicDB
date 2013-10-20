@@ -9,7 +9,6 @@ DynamicDB::Application.routes.draw do
     resources :columns
   end
 
-  # TODO: These should get moved within :tables.
   resources :columns
   resources :records
 end

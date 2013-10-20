@@ -89,6 +89,6 @@ span.editable:hover {
     border-bottom: 1px solid #00008b;
 }
 
-form.edit-column .actions {
+.hidden {
   display: none;
 }

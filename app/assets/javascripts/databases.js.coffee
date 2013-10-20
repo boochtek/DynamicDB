@@ -5,7 +5,9 @@
 openColumnEditForm = ($column) ->
   # Initialize form with values for column
   $form = $(".edit-column")
-  $form.find("#column_type option[value='#{$column.data('type')}']").attr("selected", "selected")
+  type = $column.data('type')
+  $form.find("#column_type option[value='#{type}']").attr("selected", "selected")
+  toggleLinkFields type
   $form.find("#column_name").val($column.data('name'))
   $form.data(id: $column.data('id'))
   $form.attr(action: "/columns/#{$column.data('id')}", method: "put")
@@ -72,7 +74,6 @@ $ ->
 
   $(".edit-column").dialog
     autoOpen: false
-    height: 200
     width: 350
     modal: true
     resizable: false
@@ -92,6 +93,15 @@ $ ->
         }
       ]
 
+  $(".edit-column #column_type").on 'change', (e) ->
+    toggleLinkFields $(e.target).val()
+
+  $(".edit-column #column_linked_table").on 'change', (e) ->
+    toggleLinkColumnFields $(e.target).val()
+
+  $('.database .tables .table').append($(data))
+  bindEventHandlers()
+
   $('form.add-record').on 'click', (e) ->
     e.preventDefault()
     $.post '/records', {table_id: $('.database .tables .table').data('id')}, (data, textStatus, jqXHR) ->
@@ -106,6 +116,19 @@ $ ->
       add_new_column_to_table(new_column_name, data['id'])
     , 'json'
 
+toggleLinkFields = (selected) ->
+  if "Link" == selected
+    $('#column_linked_table').parent().removeClass('hidden')
+    toggleLinkColumnFields
+    val = $("#column_linked_table").val()
+    toggleLinkColumnFields val
+  else
+    $('#column_linked_table').parent().addClass('hidden')
+    $('.column_selector').addClass('hidden')
+
+toggleLinkColumnFields = (selected) ->
+    $('.column_selector').addClass('hidden')
+    $("#columns_for_#{selected}").removeClass('hidden')
 
 add_new_record_to_table = (new_record_id) ->
   num_columns = $('table.data-table thead tr th').length

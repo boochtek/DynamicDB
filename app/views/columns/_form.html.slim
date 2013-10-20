@@ -5,4 +5,12 @@
   .field
     = f.label :type
     = f.select :type, options: Column::TYPES
-  .actions = f.submit 'Save'
+  .field.hidden
+    = f.label :linked_table
+    = collection_select :column, :linked_table, @database.tables, :id, :name
+  - @database.tables.each do |table|
+    .field.hidden.column_selector id="columns_for_#{table.id}"
+      = f.label :linked_column
+      - #binding.pry
+      = collection_select :column, :linked_column_id, table.columns, :id, :name
+  .actions.hidden = f.submit 'Save'
