@@ -21,7 +21,9 @@
 
 .database .tables table td {
   height: 1em;
-  min-width: 5em;
+  min-width: 10em;
+}
+.database .tables table td input[type=text] {
 }
 
 .dataTables_wrapper {
