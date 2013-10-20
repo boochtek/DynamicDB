@@ -11,6 +11,7 @@
 /*
  *= require jquery.ui.all
  *= require dataTables/src/demo_table_jui
+ *= require dataTables/extras/TableTools
  *= require_tree .
  *= require_self
  */
