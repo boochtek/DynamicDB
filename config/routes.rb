@@ -1,10 +1,13 @@
 DynamicDB::Application.routes.draw do
   root to: 'home#index', as: 'home'
 
-  resources :databases
+  resources :databases do
+    resources :tables
+  end
 
-  # TODO: This should get moved within :databases.
-  resources :tables
+  resources :tables do
+    resources :columns
+  end
 
   # TODO: These should get moved within :tables.
   resources :columns

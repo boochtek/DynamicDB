@@ -7,7 +7,9 @@ class Table < ActiveRecord::Base
   # attribute :name, String
   # timestamps
 
-  default_scope order('created_at')
+  def self. default_scope 
+    order('created_at')
+  end
 
   def initialize(*args)
     super

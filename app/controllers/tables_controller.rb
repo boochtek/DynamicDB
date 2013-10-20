@@ -4,7 +4,11 @@ class TablesController < ApplicationController
   # GET /tables
   # GET /tables.json
   def index
-    @tables = Table.all
+    if params[:database_id]
+      @tables = Table.where(database_id: params[:database_id])
+    else
+      @tables = Table.all
+    end
   end
 
   # GET /tables/1

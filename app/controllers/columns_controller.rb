@@ -4,7 +4,11 @@ class ColumnsController < ApplicationController
   # GET /columns
   # GET /columns.json
   def index
-    @columns = Column.all
+    if params[:table_id]
+      @columns = Column.where(table_id: params[:table_id])
+    else
+      @columns = Column.all
+    end
   end
 
   # GET /columns/1
