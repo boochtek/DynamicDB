@@ -9,7 +9,7 @@ enableEditables = ->
     # TODO: We should handle failures and timeouts in POSTing, and make our own "Saving..." indicator.
     $.post($span.data('url'), data)
     value
-  , tooltip: 'Click to edit'
+  , tooltip: 'Click to edit', placeholder: ''
 
   $('table.editable td').editable (value, settings) ->
     $td = $(this)
@@ -18,6 +18,6 @@ enableEditables = ->
     # TODO: We should handle failures and timeouts in POSTing, and make our own "Saving..." indicator.
     $.post($tr.data('url'), data, null, 'json')
     value
-  , onblur: 'submit'
+  , onblur: 'submit', placeholder: ''
 
 window.enableEditables = enableEditables
