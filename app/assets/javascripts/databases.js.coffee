@@ -5,12 +5,20 @@
 openColumnEditForm = ($column) ->
   # Initialize form with values for column
   $form = $(".edit-column")
-  type = $column.data('type')
-  $form.find("#column_type option[value='#{type}']").attr("selected", "selected")
-  toggleLinkFields type
-  $form.find("#column_name").val($column.data('name'))
-  $form.data(id: $column.data('id'))
-  $form.attr(action: "/columns/#{$column.data('id')}", method: "put")
+  column_data = $column.data()
+  $form.find("#column_data_type option[value='#{column_data.type}']").attr("selected", "selected")
+  toggleLinkFields column_data.type
+
+  if column_data.type is "Link" and column_data.linkId?
+    $option = $form.find("#column_linked_column_id option[value='#{column_data.linkId}']")
+    $option.attr("selected", "selected")
+    table_id = $option.closest('.field').data('table-id')
+    $form.find("#column_linked_table option[value='#{table_id}']").attr("selected", "selected")
+    toggleLinkColumnFields table_id
+
+  $form.find("#column_name").val(column_data.name)
+  $form.data(id: column_data.id)
+  $form.attr(action: "/columns/#{column_data.id}", method: "put")
 
   # Open Modal Form Dialog
   $(".edit-column").dialog "open"
@@ -18,23 +26,20 @@ openColumnEditForm = ($column) ->
 columnEditSubmitHandler = (e) ->
   e.preventDefault()
   form = $(e.target)
-  data_type = $('#column_type').val()
-  name = $('#column_name').val()
+  colData = form.serializeObject()['column']
   # TODO: deal with errors/validations. Waiting indicator
   $.ajax
     url: form.attr('action'),
     type: 'PUT'
-    data:
-      data_type: data_type
-      name: name
+    data: colData
     success: ->
-      updateColumnHeader(form.data('id'), name, data_type)
+      updateColumnHeader(colData)
       $(".edit-column").dialog "close"
 
-updateColumnHeader = (id, name, data_type) ->
-  $th = $("th[data-id='#{id}']")
-  $th.text(name)
-  $th.data(type: data_type, name: name)
+updateColumnHeader = (colData) ->
+  $th = $("th[data-id='#{colData.id}']")
+  $th.text(colData.name)
+  $th.data(colData)
 
 show_table = (table_id) ->
   $('.database .tables .table').empty()
@@ -124,7 +129,7 @@ $ ->
         }
       ]
 
-  $(".edit-column #column_type").on 'change', (e) ->
+  $(".edit-column #column_data_type").on 'change', (e) ->
     toggleLinkFields $(e.target).val()
 
   $(".edit-column #column_linked_table").on 'change', (e) ->
@@ -153,10 +158,13 @@ toggleLinkFields = (selected) ->
   else
     $('#column_linked_table').parent().addClass('hidden')
     $('.column_selector').addClass('hidden')
+    $(".column_selector select").attr('disabled', 'disabled')
 
-toggleLinkColumnFields = (selected) ->
-    $('.column_selector').addClass('hidden')
-    $("#columns_for_#{selected}").removeClass('hidden')
+toggleLinkColumnFields = (table_id) ->
+  $('.column_selector').addClass('hidden')
+  $(".column_selector select").attr('disabled', 'disabled')
+  $("#columns_for_#{table_id}").removeClass('hidden')
+  $(".field[data-table-id='#{table_id}'] select").attr('disabled', false)
 
 add_new_record_to_table = (new_record_id) ->
   num_columns = $('table.data-table thead tr th').length

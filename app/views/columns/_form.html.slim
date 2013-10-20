@@ -3,14 +3,13 @@
     = f.label :name
     = f.text_field :name
   .field
-    = f.label :type
-    = f.select :type, options: Column::TYPES
+    = f.label :data_type
+    = f.select :data_type, options: Column::TYPES
   .field.hidden
     = f.label :linked_table
     = collection_select :column, :linked_table, @database.tables, :id, :name
   - @database.tables.each do |table|
-    .field.hidden.column_selector id="columns_for_#{table.id}"
+    .field.hidden.column_selector id="columns_for_#{table.id}" data-table-id=table.id
       = f.label :linked_column
-      - #binding.pry
       = collection_select :column, :linked_column_id, table.columns, :id, :name
   .actions.hidden = f.submit 'Save'

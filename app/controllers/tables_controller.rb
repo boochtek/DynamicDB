@@ -69,7 +69,7 @@ class TablesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_table
-      @table = Table.includes(:columns).find(params[:id])
+      @table = Table.includes(:columns, :records).find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

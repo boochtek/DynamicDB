@@ -2,7 +2,7 @@ table.editable.data-table id=table.id
   thead
     tr
       - table.columns.each_with_index do |column, index|
-        th data-id=column.id data-name=column.name data-index=index data-type=column.type
+        th data-id=column.id data-name=column.name data-index=index data-type=column.type data-link-id=column.linked_column_id
           = column.name
   tbody
     - table.records.each do |record|
