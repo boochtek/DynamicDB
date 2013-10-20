@@ -139,3 +139,7 @@ input[type="submit"].DTTT_button {
 .database ul.list {
   min-height: 1000px; // HAX
 }
+
+.tables .list li #add-table {
+  margin-bottom: 20px;
+}

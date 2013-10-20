@@ -14,7 +14,7 @@ div.database data-id=@database.id
   div.tables
     ul.list
       li
-        a#add-table = 'Add Table'
+        a#add-table.DTTT_button = 'Add Table'
       - @database.tables.each do |table|
         li
           a data-id=table.id data-name=table.name
