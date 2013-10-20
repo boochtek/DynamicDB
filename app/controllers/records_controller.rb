@@ -1,6 +1,6 @@
 class RecordsController < ApplicationController
 
-  # PATCH/PUT /tables/1
+  # PATCH/PUT /records/1
   # WARNING: This does not work like a typical update - it's updating an array-like data structure.
   def update
     @record = Record.find(params[:id])
@@ -15,9 +15,23 @@ class RecordsController < ApplicationController
     end
   end
 
+  # POST /records.json
+  def create
+    @record = Record.new(record_params)
+
+    respond_to do |format|
+      if @record.save
+        format.json { render action: 'show', status: :created, location: @record }
+      else
+        format.json { render json: @record.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+
   private
 
   def record_params
-    params.permit(:index, :value)
+    params.permit(:table_id, :index, :value)
   end
 end
